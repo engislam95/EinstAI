@@ -9,7 +9,7 @@ export default function Header() {
 
   const navItems = [
     { name: 'Chatbot', path: '/Chat' },
-    { name: 'Image AI ( .. Soon )', path: '/image' },
+    { name: 'Image AI', path: '/ImageGenerator' },
     { name: 'Voice AI ( .. Soon )', path: '/voice' },
     { name: 'Code Assistant ( .. Soon )', path: '/code' },
   ]

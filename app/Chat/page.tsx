@@ -1,6 +1,7 @@
 'use client'
 
 import { useChat } from '@ai-sdk/react'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
@@ -17,40 +18,60 @@ export default function Chat() {
   }, [messages])
 
   return (
-    <div
-      ref={chatContainer}
-      className="border-box mx-auto mb-10 flex h-screen max-w-4xl flex-col items-start overflow-y-auto rounded-2xl rounded-b-none border border-b-0 p-10"
-    >
-      {messages.map((message, index) => (
-        <div
-          key={message.id}
-          className={`${message.role === 'user' ? 'user-char' : 'ai-chat'} mb-5 flex items-start gap-2`}
-        >
-          <Image
-            key={message.id}
-            alt="avatar"
-            src={`${message.role === 'user' ? '/user.webp' : '/ai.png'}`}
-            width={message.role === 'user' ? 30 : 50}
-            height={message.role === 'user' ? 30 : 50}
-          />
-          <div className="prose prose-sm dark:prose-invert">
-            <ReactMarkdown>{message.content}</ReactMarkdown>
-            {index < messages.length - 1 && <hr className="my-5 w-full" />}
-          </div>
-        </div>
-      ))}
+    <div className="flex h-screen flex-col-reverse md:flex-row">
+      {/* Left Section: Animation */}
+      <div className="hidden w-full items-center justify-center p-6 md:flex md:w-1/3">
+        <DotLottieReact src="/Animation - 1747158018473.json" loop autoplay />
+      </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="fixed bottom-8 left-1/2 w-full max-w-md -translate-x-1/2"
+      {/* Right Section: Chat Box */}
+      <div
+        ref={chatContainer}
+        className="flex w-full max-w-4xl flex-col space-y-6 overflow-y-auto rounded-xl border border-purple-500 p-6 shadow-lg md:ml-4 md:w-2/3"
       >
-        <input
-          className="w-full rounded-2xl border border-white p-2 shadow-xl"
-          value={input}
-          placeholder="Say something..."
-          onChange={handleInputChange}
-        />
-      </form>
+        {/* Messages */}
+        <div className="space-y-4">
+          {messages.map((message, index) => (
+            <div
+              key={message.id}
+              className={`flex gap-4 ${message.role === 'user' ? 'justify-start' : 'justify-end'} items-center`}
+            >
+              <Image
+                alt="avatar"
+                src={message.role === 'user' ? '/user.webp' : '/ai.png'}
+                width={message.role === 'user' ? 30 : 50} // Image size for user and AI
+                height={message.role === 'user' ? 30 : 50} // Keep original size
+                className="rounded-full"
+              />
+              <div
+                className={`max-w-[70%] rounded-lg p-4 shadow-md ${
+                  message.role === 'user'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 text-black'
+                }`}
+              >
+                <ReactMarkdown>{message.content}</ReactMarkdown>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Input Form */}
+        <form onSubmit={handleSubmit} className="mt-4 flex items-center gap-4">
+          <input
+            className="w-full rounded-xl border border-gray-300 p-3 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={input}
+            placeholder="Say something..."
+            onChange={handleInputChange}
+          />
+          <button
+            type="submit"
+            className="inline-block rounded-xl bg-purple-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-purple-600"
+          >
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

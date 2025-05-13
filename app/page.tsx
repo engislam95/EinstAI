@@ -18,7 +18,7 @@ export default function Home() {
         <div className="mt-8">
           <a
             href="/Chat"
-            className="inline-block rounded bg-purple-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-purple-600"
+            className="inline-block rounded-xl bg-purple-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-purple-600"
           >
             Enter Chat
           </a>
