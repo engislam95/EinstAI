@@ -46,14 +46,14 @@ export default function Speak() {
           </h2>
 
           <textarea
-            className="w-full rounded-xl border border-gray-300 p-3 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full rounded-xl border border-gray-300 p-3 text-black placeholder-gray-500 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white dark:placeholder-gray-400"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Type something to speak... (it's required)"
           />
 
           <select
-            className="my-5 w-full rounded-xl border border-gray-300 p-3 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="my-5 w-full rounded-xl border border-gray-300 p-3 text-black placeholder-gray-500 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white dark:placeholder-gray-400"
             value={voiceId}
             onChange={(e) => setVoiceId(e.target.value)}
           >

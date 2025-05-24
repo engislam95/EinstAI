@@ -59,7 +59,7 @@ export default function Chat() {
         {/* Input Form */}
         <form onSubmit={handleSubmit} className="mt-4 flex items-center gap-4">
           <input
-            className="w-full rounded-xl border border-gray-300 p-3 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full rounded-xl border border-gray-300 p-3 text-black placeholder-gray-500 shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white dark:placeholder-gray-400"
             value={input}
             placeholder="Say something..."
             onChange={handleInputChange}
